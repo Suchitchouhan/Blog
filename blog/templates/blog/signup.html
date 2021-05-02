@@ -1,0 +1,50 @@
+ {% extends "blog/base.html" %}
+ {% block content %}
+ <div class="location">
+            <div class="container">
+                <div class="row">
+                    <div class="col-lg-5">
+                        <div class="location-form">
+                            <h3>Login</h3>
+                            <form method="POST" action="/login">
+                                {% csrf_token %}
+                                <div class="control-group">
+                                    <input type="text" class="form-control" id="email" placeholder="Email" name="email" required="required" />
+                                </div>
+                                <div class="control-group">
+                                    <input type="password" class="form-control" id=password name="password" placeholder="Password" required="required" />
+                                </div>
+                                <a href=""><span class="badge badge-pill badge-light">forget password</span></a>
+                                <div>
+                                    <button class="btn btn-custom" type="submit">Login</button>
+                                </div>
+                            </form>
+                        </div>
+                    </div>
+                    <div class="col-lg-5">
+                        <div class="location-form">
+                            <h3>User Signup</h3>
+                                <div class="control-group">
+                                    <input type="email" class="form-control" placeholder="Email" id="signupemail" required="required" />
+                                </div>
+                                 <div class="control-group">
+                                    <input type="text" class="form-control" placeholder="First name" id="signupfirstname" required="required" />
+                                </div>
+                                 <div class="control-group">
+                                    <input type="text" class="form-control" placeholder="Last name" id="signuplastname" required="required" />
+                                </div>
+                                <div class="control-group">
+                                    <textarea type="text" class="form-control" placeholder="Little Bit Summary About You" required="required" id="signupsummary" /></textarea>
+                                </div>
+                                <div class="control-group">
+                                    <input type="password" class="form-control" placeholder="Password" id="signuppassword" required="required" />
+                                </div>
+                                <div>
+                                    <button class="btn btn-custom" type="submit" id="btnsignup">Signup</button>
+                                </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+{% endblock content %}

@@ -1,0 +1,69 @@
+{% extends "blog/base.html" %}
+      {% block content %}
+
+        
+        <!-- Page Header Start -->
+        <div class="page-header">
+            <div class="container">
+                <div class="row">
+                    <div class="col-12">
+                        <h2>{{ cat.name }}</h2>
+                    </div>
+                    <div class="col-12">
+                        <a>{{ cat.description }}</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- Page Header End -->
+        
+        
+        <!-- Blog Start -->
+        <div class="blog">
+            <div class="container-fluid">
+                <div class="section-header text-center">
+                    <p>Our Blog</p>
+                </div>
+                <div class="row">
+                    {% for a,b,c,d in blog %}
+                    <div class="col-lg-4">
+                        <div class="blog-item">
+                            <div class="blog-img">
+                                <img src="{{ a.image.url }}" alt="Image">
+                                <div class="meta-date">
+                                    <span>{{ a.date }}</span>
+                                   
+                                </div>
+                            </div>
+                            <div class="blog-text">
+                                <h3><a href="${{ a.slugurl }}">{{ a.title }}</a></h3>
+                                <p>
+                                   {{ a.description }}
+                                </p>
+                            </div>
+                            <div class="blog-meta">
+                                <p><i class="fa fa-thumbs-up"></i><a href="">{{ b }} Likes</a></p>
+                                <p><i class="fa fa-eye"></i><a href="">{{ d }} Views</a></p>
+                                <p><i class="fa fa-comments"></i><a href="">{{ c }} Comments</a></p>
+                            </div>
+                        </div>
+                    </div>
+                    {% endfor %}
+                  
+                </div>
+                <div class="row">
+                    <div class="col-12">
+                        <ul class="pagination justify-content-center">
+                            <li class="page-item disabled"><a class="page-link" href="#">Previous</a></li>
+                            <li class="page-item"><a class="page-link" href="#">1</a></li>
+                            <li class="page-item active"><a class="page-link" href="#">2</a></li>
+                            <li class="page-item"><a class="page-link" href="#">3</a></li>
+                            <li class="page-item"><a class="page-link" href="#">Next</a></li>
+                        </ul> 
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- Blog End -->
+
+{% endblock content %}

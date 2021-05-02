@@ -1,0 +1,60 @@
+<script>
+	$("#btnsignup").click(function(){
+    let email=$("#signupemail").val();
+    let firstname=$("#signupfirstname").val();
+    let lastname=$("#signuplastname").val();
+    let summary=$("#signupsummary").val();
+    let password=$("#signuppassword").val();
+     if (email == ""){
+      swal("Please Enter Email");
+    }else if(firstname == ""){
+      swal("Please Enter FirstName");
+    }else if(lastname == ""){
+      swal("Please Enter LastName");
+    }else if(summary == ""){
+      swal("Please Enter something about your self");
+    }else if(password == ""){
+      swal("Please Enter password");
+    }else{
+    	mydata={email:email,firstname:firstname,lastname:lastname,summary:summary,password:password};
+    	$.ajax({
+    		  url:"{% url 'signup' %}",
+		        method:"POST",
+		        data:mydata,
+		        success:function(data){
+		          if (data.status == "successfully"){
+		            swal("Your account has been successfully created . Please Login with your Email and password");
+		            $("#signupemail").val('');
+		            $("#signupfirstname").val('');
+		            $("#signuplastname").val('');
+		            $("#signupsummary").val('');
+		            $("#signuppassword").val('');
+		          }else if(data.status == "already exists"){
+		          	swal("Your email Already in Used .If you forget your password then reset ");
+		          }
+		          else{
+		          	swal(data.status);
+		          }
+		          
+		        }
+
+    	});
+    }
+  });
+
+
+  $("#addblock").click(function(){
+  const result = Math.random().toString(36).substring(2,30);
+              console.log(result);
+       $("#block").append("<br><div class='input-group mb-3'><div class='custom-file'><input type='file' class='custom-file-input' id='inputGroupFile01'><label class='custom-file-label' name='block_image' for='inputGroupFile01'>Choose file Image Photo videos or and file (jpg,png,mp4,)</label></div></div>");       
+                 $("#block").append("<textarea id="+result+" name='content'></textarea>");
+       CKEDITOR.replace( result );       
+
+      });
+  $("#addtag").click(function(){
+    $("#blogtag").append("<div class='input-group mb-3'><div class='input-group-prepend'><span class='input-group-text'>tag</span></div><input type='text' name='blogtag' class='form-control' placeholder='Enter Tag or Keyword according to your blog.which is very helpfull to finding to your blog'></div>");
+
+  });
+
+  
+</script>
